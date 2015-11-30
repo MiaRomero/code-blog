@@ -1,0 +1,33 @@
+header {
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-righ: 30px;
+
+}
+
+#title {
+  font: Verdana;
+  /*position: fixed;*/
+  right: 0;
+  top: 0;
+  background-color: #A2A0A3;
+  text-align: left;
+  padding: 15px;
+
+}
+
+nav {
+  font: Verdana;
+  background-color: #72B5F7;
+  color: #0B0082;
+  margin-top: 10px;
+  text-align: justify;
+  display: inline-block;
+}
+
+main {
+  margin: 30px;
+  
+
+
+}
