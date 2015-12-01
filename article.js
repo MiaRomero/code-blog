@@ -21,7 +21,7 @@ CompleteArticle.prototype.toHTML = function () {
   $newClone.find(".articleTitle").text(this.title);
   $newClone.find(".author").text("By " + this.author);
   $newClone.find(".publishDate").text("Published about " + daysAgo + " days ago");
-  $newClone.find(".articleContent").html(fullArticle.body);
+  $newClone.find(".articleContent").html(this.body);
 
   $("article:last").after($newClone);
 }

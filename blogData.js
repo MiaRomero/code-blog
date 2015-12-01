@@ -1,18 +1,4 @@
-var blog = {};
-
-//blog.prototype.sortArticlesByDate = function () {
-
-function sortArticlesByDate (){
-  for (var i = 0; i < blog.articles.length; i++){
-    var date = blog.articles[i].publishedOn;
-    blog.articles[i].publishedOn = Date.parse(date);
-  }
-  blog.articles.sort(function(a,b){
-   return b.publishedOn - a.publishedOn;
-  });
-}
-
-blog.articles = [
+var articles = [
   {
     title:       'Bacon Ipsum',
     category:    'food',
