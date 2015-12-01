@@ -8,13 +8,20 @@ function CompleteArticle(dataObject) {
   this.body = dataObject.body;
 }
 
-CompleteArticle.prototype.toHTML = function () {
+CompleteArticle.prototype.calculateDaysAgo = function (date) {
+  var milSecondsPerDay = 1000 * 3600 * 24;
+  var today = new Date();
+  return Math.floor((today-date) / milSecondsPerDay);
+}
 
+CompleteArticle.prototype.toHTML = function () {
+  var daysAgo = this.calculateDaysAgo(this.publishedOn);
   var $newClone = $('article').filter(':first').clone();
 
-  $newClone.find("#articleTitle").text(this.title);
-  $newClone.find("#author").text(this.author);
-  $newClone.find("#articleContent").html(fullArticle.body);
+  $newClone.find(".articleTitle").text(this.title);
+  $newClone.find(".author").text("By " + this.author);
+  $newClone.find(".publishDate").text("Published about " + daysAgo + " days ago");
+  $newClone.find(".articleContent").html(fullArticle.body);
 
   $("article:last").after($newClone);
 }
