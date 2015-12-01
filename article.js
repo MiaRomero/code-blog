@@ -1,7 +1,4 @@
 
-
-
-
 function CompleteArticle(dataObject) {
   this.title = dataObject.title;
   this.category = dataObject.category;
@@ -11,32 +8,13 @@ function CompleteArticle(dataObject) {
   this.body = dataObject.body;
 }
 
-function toHTML(fullArticle) {
+CompleteArticle.prototype.toHTML = function () {
 
-    var $newClone = $('article').filter(':first').clone();
+  var $newClone = $('article').filter(':first').clone();
 
-    $newClone.find("#articleTitle").text(fullArticle.title);
-    $newClone.find("#author").text(fullArticle.author);
-    $newClone.find("#articleContent").html(fullArticle.body);
+  $newClone.find("#articleTitle").text(this.title);
+  $newClone.find("#author").text(this.author);
+  $newClone.find("#articleContent").html(fullArticle.body);
 
-
-    $("article:last").after($newClone);
-
-
-
-
-}
-
-//var createdArticlesArray = [];
-
-
-for (var i = 0; i < blogArticles.length; i++){
-  var fullArticle = new CompleteArticle(blogArticles[i]);
-                  //createdArticlesArray.push(fullArticle);
-
-  toHTML(fullArticle);
-
-
-
-
+  $("article:last").after($newClone);
 }

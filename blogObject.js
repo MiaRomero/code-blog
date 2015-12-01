@@ -1,5 +1,5 @@
-
-var blogArticles = [
+var blog = {};
+blog.articles = [
   {
     title:       'Bacon Ipsum',
     category:    'food',
