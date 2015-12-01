@@ -11,30 +11,32 @@ function CompleteArticle(dataObject) {
   this.body = dataObject.body;
 }
 
-var createdArticlesArray = [];
-          console.log(blogArticles);
-          console.log(blogArticles[0].title);
-          var testArticle = new CompleteArticle(blogArticles[0]);
-          console.log(testArticle);
+function toHTML(fullArticle) {
 
-for (var i = 0; i < blogArticles.length; i++){
-  var fullArticle = new CompleteArticle(blogArticles[i]);
-  createdArticlesArray.push(fullArticle);
+    var $newClone = $('article').filter(':first').clone();
 
-  var emptyClone = $("article").clone();
-  console.log(emptyClone);
+    $newClone.find("#articleTitle").text(fullArticle.title);
+    $newClone.find("#author").text(fullArticle.author);
+    $newClone.find("#articleContent").html(fullArticle.body);
+
+
+    $("article:last").after($newClone);
+
+
+
 
 }
 
+//var createdArticlesArray = [];
+
+
+for (var i = 0; i < blogArticles.length; i++){
+  var fullArticle = new CompleteArticle(blogArticles[i]);
+                  //createdArticlesArray.push(fullArticle);
+
+  toHTML(fullArticle);
 
 
 
 
-
-/*Article.prototype.toHTML = function() {
-
-  return "<article>" +
-  "<h1>" + this.title + "</h1>" +
-  "</article>"
-
-}*/
+}
