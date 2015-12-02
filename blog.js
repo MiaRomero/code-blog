@@ -24,6 +24,7 @@ blog.loadBlogPage = function () {
   blog.sortArticlesByDate();
   for (var i = 0; i < blog.articles.length; i++){
     var fullArticle = new CompleteArticle(blog.articles[i]);
+    //console.log(fullArticle);
     fullArticle.toHTML();
   }
 };

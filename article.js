@@ -27,13 +27,18 @@ CompleteArticle.prototype.calculateDaysAgo = function (date) {
    */
 CompleteArticle.prototype.toHTML = function () {
   var daysAgo = this.calculateDaysAgo(this.publishedOn);
-  var $newClone = $('article').filter(':first').clone();
+  var $newClone = $('article').filter(':last').clone();
 
   $newClone.find('.articleTitle').text(this.title);
-  //$newClone.find('.author').text('By ' + this.author);
-  $newClone.find('.author').html('<p><a href=' + this.authorUrl + '>By '+ this.author + '</a></p>');
+  console.log(this.authorUrl);
+
+  $newClone.find('.author').html('<div><a href=' + this.authorUrl + '>By '+ this.author + '</a></div>');
+  console.log($newClone.find('.author'));
   $newClone.find('.publishDate').text('Published about ' + daysAgo + ' days ago');
   $newClone.find('.articleContent').html(this.body);
+  $newClone.find('.category').html(this.category).hide();
+  $newClone.find('.readMore').text('Read More');
+  $newClone.find('.readLess').text('Read Less');
 
   $('article:last').after($newClone);
 };

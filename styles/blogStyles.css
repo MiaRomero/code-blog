@@ -32,3 +32,9 @@ img {
 main {
   text-align: left;
 }
+
+article {
+  border-width: 5px;
+  border-bottom-color: black;
+
+}

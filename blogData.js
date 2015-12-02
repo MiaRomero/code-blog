@@ -114,7 +114,7 @@ var articles = [
   {
     title:       'Batman Ipsum',
     category:    'lifestyle',
-    author:      'Batman -duh',
+    author:      'Batman',
     authorUrl:   'http://www.dccomics.com/characters/batman',
     publishedOn: '2015-10-23',
     body:        '<p>My anger outweights my guilt.</p><p>You care about justice? Look beyond your own pain, Bruce.<img src="http://lorempixel.com/300/350/people/" class="pull-left"> This city is rotting.</p><p>I\'ve sewn you up, I\'ve set your bones, but I won\'t bury you. I\'ve buried enough members in the Wayne family.</p><p>But it\'s not who you are underneath... it\'s what you do that defines you.</p><p>Didn\'t you get the memo?</p><p>There is a prison in a more ancient part of the world. A pit where men are thrown to suffer and die. But sometimes a man rises from the darkness. Sometimes, the pit sends something back.</p>'
