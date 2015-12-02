@@ -30,13 +30,10 @@ CompleteArticle.prototype.toHTML = function () {
   var $newClone = $('article').filter(':last').clone();
 
   $newClone.find('.articleTitle').text(this.title);
-  console.log(this.authorUrl);
-
-  $newClone.find('.author').html('<div><a href=' + this.authorUrl + '>By '+ this.author + '</a></div>');
-  console.log($newClone.find('.author'));
+  $newClone.find('.author').html('<div><a href= "' + this.authorUrl + '">By '+ this.author + '</a></div>');
   $newClone.find('.publishDate').text('Published about ' + daysAgo + ' days ago');
   $newClone.find('.articleContent').html(this.body);
-  $newClone.find('.category').html(this.category).hide();
+  $newClone.find('.category').text(this.category).hide();
   $newClone.find('.readMore').text('Read More');
   $newClone.find('.readLess').text('Read Less');
 

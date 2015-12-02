@@ -10,7 +10,6 @@ $(function () {
 
   truncateArticles();
 
-///
   $('.readMore').on('click', function(event){
     event.preventDefault();
     console.log(event);
@@ -18,38 +17,37 @@ $(function () {
     $(this).hide();
     $(this).parent().find('.readLess').show();
   });
-///
+
   $('.readLess').on('click', function(event){
     event.preventDefault();
     truncateArticles();
   });
-///
+
   $('#authorDropDown').change(function (){
-    var chosenAuthor = $('#authorDropDown').val();
-
-    $('article').each(function() {
-      if($(this).find('.author') !== chosenAuthor){
-        $(this).hide();
-      }
-    });
-
-    console.log(chosenAuthor);
-    $('article').find('category');
-
+    var selected = $('#authorDropDown').val();
+    var chosenAuthor = 'By ' + selected;
+    var firstOption = $('#authorDropDown option:first-child').text();
+    $('article').show();
+    if (selected !== firstOption){
+      $('.author').each(function() {
+        if( $(this).text() !== chosenAuthor ) {
+          $(this).parent().hide();
+        };
+      });
+    }
   });
 
-
-
-
-
-///
   $('#categoryDropDown').change(function () {
-    console.log($('#categoryDropDown').val());
+    var chosenCategory = ($('#categoryDropDown').val());
+    var firstOption = $('#categoryDropDown option:first-child').text();
+    $('article').show();
+    if (chosenCategory !== firstOption){
+      $('.category').each(function() {
+        if( $(this).text() !== chosenCategory ) {
+          $(this).parent().hide();
+        };
+      });
+    }
   });
-
-
-
-
-
 
 });
