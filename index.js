@@ -2,17 +2,8 @@
 $(function () {
   blog.loadBlogPage();
 
-  truncateArticles = function () {
-    $('div p:not(:first-child)').hide();
-    $('.readMore').show();
-    $('.readLess').hide();
-  };
-
-  truncateArticles();
-
   $('.readMore').on('click', function(event){
     event.preventDefault();
-    console.log(event);
     $(this).parent().find('div p').show();
     $(this).hide();
     $(this).parent().find('.readLess').show();
@@ -20,15 +11,16 @@ $(function () {
 
   $('.readLess').on('click', function(event){
     event.preventDefault();
-    truncateArticles();
+    blog.truncateArticles();
   });
 
   $('#authorDropDown').change(function (){
     var selected = $('#authorDropDown').val();
     var chosenAuthor = 'By ' + selected;
-    var firstOption = $('#authorDropDown option:first-child').text();
+    var filterByText = $('#authorDropDown option:first-child').text();
+    $('#categoryDropDown').prop('selectedIndex',0);
     $('article').show();
-    if (selected !== firstOption){
+    if (selected !== filterByText){
       $('.author').each(function() {
         if( $(this).text() !== chosenAuthor ) {
           $(this).parent().hide();
@@ -39,9 +31,10 @@ $(function () {
 
   $('#categoryDropDown').change(function () {
     var chosenCategory = ($('#categoryDropDown').val());
-    var firstOption = $('#categoryDropDown option:first-child').text();
+    var filterByText = $('#categoryDropDown option:first-child').text();
+    $('#authorDropDown').prop('selectedIndex',0);;
     $('article').show();
-    if (chosenCategory !== firstOption){
+    if (chosenCategory !== filterByText){
       $('.category').each(function() {
         if( $(this).text() !== chosenCategory ) {
           $(this).parent().hide();

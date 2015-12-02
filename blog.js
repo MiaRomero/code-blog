@@ -16,6 +16,12 @@ blog.sortArticlesByDate = function () {
   });
 };
 
+blog.truncateArticles = function () {
+  $('div p:not(:first-child)').hide();
+  $('.readMore').show();
+  $('.readLess').hide();
+};
+
 /**
    * Creates a completed article object from each object in article array,
    * posts each to webpage.
@@ -26,4 +32,5 @@ blog.loadBlogPage = function () {
     var fullArticle = new CompleteArticle(blog.articles[i]);
     fullArticle.toHTML();
   }
+  blog.truncateArticles();
 };
