@@ -14,32 +14,12 @@ function CompleteArticle(dataObject) {
 
 /**
    * Calculates the number of days that have passed since "date"
-   * @param date - date (in milliseconds) to be calculated
+   * @param date - object.milliDate (in milliseconds) to be calculated
    */
 CompleteArticle.prototype.calculateDaysAgo = function (date) {
   var milSecondsPerDay = 1000 * 3600 * 24;
   var today = new Date();
-  return Math.floor((today-date) / milSecondsPerDay);
-};
-
-CompleteArticle.prototype.createDropDownFilter = function (filter, elementID){ ///filter must be this.property
-  //var author = this.author;    ////elementID must include # and be a string
-  var $options = $(elementID).children();
-  var repeat = false;
-
-  $options.each(function() {
-                                                  ///console.log("THIS: " + $(this));
-                                                  ///console.log('This is options.val: ' + $(this).val());
-    if($(this).val() === filter ){
-      repeat = true;
-    }
-  });
-
-  if(!repeat){
-    var $newOptionClone = $(elementID +' :first').clone();
-    $newOptionClone.text(filter);
-    $(elementID + ' :last').after($newOptionClone);
-  }
+  return Math.floor((today - date) / milSecondsPerDay);
 };
 
 /**
@@ -60,25 +40,24 @@ CompleteArticle.prototype.toHTML = function () {
 
   $('article:last').after($newClone);
 
-  this.createDropDownFilter(this.author, '#authorDropDown');
-  this.createDropDownFilter(this.category, '#categoryDropDown');
+  /*this.createDropDownFilter(this.author, '#authorDropDown');
+  this.createDropDownFilter(this.category, '#categoryDropDown');*/
 }
-///////////////////////////////////////////
-  /*var author = this.author;
-  var $options = $('#authorDropDown').children();
+
+/*CompleteArticle.prototype.createDropDownFilter = function (filter, elementID){
+  var $options = $(elementID).children();
   var repeat = false;
 
   $options.each(function() {
-    if($options.val() == author ){
+          ///console.log("THIS: " + $(this));
+          ///console.log('This is options.val: ' + $(this).val());
+    if($(this).val() === filter ){
       repeat = true;
     }
   });
-
   if(!repeat){
-    var $newOptionClone = $('#authorDropDown :first').clone();
-    $newOptionClone.text(author);
-    $('#authorDropDown :last').after($newOptionClone);
+    var $newOptionClone = $(elementID +' :first').clone();
+    $newOptionClone.text(filter);
+    $(elementID + ' :last').after($newOptionClone);
   }
 };*/
-
-///////////////////

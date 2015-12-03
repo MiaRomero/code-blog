@@ -16,10 +16,37 @@ blog.sortArticlesByDate = function () {
   });
 };
 
+/**
+   * Shows only the first paragraph of each article
+   */
 blog.truncateArticles = function () {
   $('div p:not(:first-child)').hide();
   $('.readMore').show();
   $('.readLess').hide();
+};
+
+/**
+   * Populates the drop down selectors. If the filter is not a repeat, clones
+   * the option element, formats the clone with the apporpriate info,
+   * and inserts it into the DOM.
+   * @param filter - the object property you want to filter by (object.property)
+   * @param elementID - the ID of the <select> element you want the filter to
+   *                    populate (must include be a string and include #)
+   */
+blog.createDropDownFilter = function (filter, elementID){
+  var $options = $(elementID).children();
+  var repeat = false;
+
+  $options.each(function() {
+    if($(this).val() === filter ){
+      repeat = true;
+    }
+  });
+  if(!repeat){
+    var $newOptionClone = $(elementID +' :first').clone();
+    $newOptionClone.text(filter);
+    $(elementID + ' :last').after($newOptionClone);
+  }
 };
 
 /**
@@ -31,6 +58,8 @@ blog.loadBlogPage = function () {
   for (var i = 0; i < blog.articles.length; i++){
     var fullArticle = new CompleteArticle(blog.articles[i]);
     fullArticle.toHTML();
+    blog.createDropDownFilter(fullArticle.author, '#authorDropDown');
+    blog.createDropDownFilter(fullArticle.category, '#categoryDropDown');
   }
   blog.truncateArticles();
 };

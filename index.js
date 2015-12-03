@@ -2,14 +2,14 @@
 $(function () {
   blog.loadBlogPage();
 
-  $('.readMore').on('click', function(event){
+  $('main').on('click', '.readMore',function(event){
     event.preventDefault();
     $(this).parent().find('div p').show();
     $(this).hide();
     $(this).parent().find('.readLess').show();
   });
 
-  $('.readLess').on('click', function(event){
+  $('main').on('click', '.readLess',function(event){
     event.preventDefault();
     blog.truncateArticles();
   });
