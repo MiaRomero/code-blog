@@ -9,11 +9,17 @@ blog.articles = articles;
 blog.sortArticlesByDate = function () {
   for (var i = 0; i < this.articles.length; i++){
     var date = this.articles[i].publishedOn;
-    this.articles[i].publishedOn = Date.parse(date);
+    this.articles[i].milliDate = Date.parse(date);
   }
   this.articles.sort(function(a,b){
-    return b.publishedOn - a.publishedOn;
+    return b.milliDate - a.milliDate;
   });
+};
+
+blog.truncateArticles = function () {
+  $('div p:not(:first-child)').hide();
+  $('.readMore').show();
+  $('.readLess').hide();
 };
 
 /**
@@ -26,4 +32,5 @@ blog.loadBlogPage = function () {
     var fullArticle = new CompleteArticle(blog.articles[i]);
     fullArticle.toHTML();
   }
+  blog.truncateArticles();
 };
