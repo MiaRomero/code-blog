@@ -1,0 +1,10 @@
+#new-form label {
+  display: block;
+}
+main {
+  display: block;
+  margin-top: 150px;
+}
+#article-export input {
+  display: block;
+}
