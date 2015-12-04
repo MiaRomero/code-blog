@@ -31,7 +31,7 @@ CompleteArticle.prototype.toHTML = function () {
   var $newClone = $('article:last').clone();
 
   $newClone.find('.articleTitle').text(this.title);
-  $newClone.find('.author').html('<a href= "' + this.authorUrl + '">By '+ this.author + '</a>');
+  $newClone.find('.author').html('<p>'+'By '+'<a href= "' + this.authorUrl + '">' + this.author + '</a></p>');
   $newClone.find('.publishDate').text('Published ' + daysAgo + ' days ago on ' + this.publishedOn);
   $newClone.find('.articleContent').html(this.body);
   $newClone.find('.category').text(this.category).hide();
@@ -39,25 +39,4 @@ CompleteArticle.prototype.toHTML = function () {
   $newClone.find('.readLess').text('Read Less');
 
   $('article:last').after($newClone);
-
-  /*this.createDropDownFilter(this.author, '#authorDropDown');
-  this.createDropDownFilter(this.category, '#categoryDropDown');*/
-}
-
-/*CompleteArticle.prototype.createDropDownFilter = function (filter, elementID){
-  var $options = $(elementID).children();
-  var repeat = false;
-
-  $options.each(function() {
-          ///console.log("THIS: " + $(this));
-          ///console.log('This is options.val: ' + $(this).val());
-    if($(this).val() === filter ){
-      repeat = true;
-    }
-  });
-  if(!repeat){
-    var $newOptionClone = $(elementID +' :first').clone();
-    $newOptionClone.text(filter);
-    $(elementID + ' :last').after($newOptionClone);
-  }
-};*/
+};

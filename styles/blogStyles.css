@@ -17,24 +17,43 @@ body {
 }
 
 nav {
-  font: Verdana;
-  background-color: #72B5F7;
+  font-family: Verdana;
+  background-color: none;
   color: #0B0082;
   margin-top: 10px;
-  text-align: justify;
-  display: inline-block;
+
 }
 
 img {
-  display: inline;
+  display: inline-flex;
+  width: 100%;
 }
 
 main {
   text-align: left;
 }
 
-article {
+div article {
   border-width: 5px;
   border-bottom-color: black;
 
 }
+.tabLinks a {
+  float: left;
+  width: 25%;
+  text-decoration: none;
+  text-align: justify;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 18px;
+
+}
+
+.dropDown select {
+width: 20%;
+}
+
+@media screen and (max-width: 500px) {
+  main{
+  background-color: red;
+}}

@@ -1,6 +1,7 @@
 
 var blog = {};
 blog.articles = articles;
+blog.about = about;
 
 /**
    * Converts each publishedOn date in article objects to milliseconds, sorts
@@ -49,6 +50,11 @@ blog.createDropDownFilter = function (filter, elementID){
   }
 };
 
+blog.populateAboutTab = function () {
+  $('#about p').text(this.about).hide();
+
+};
+
 /**
    * Creates a completed article object from each object in article array,
    * posts each to webpage.
@@ -58,6 +64,7 @@ blog.loadBlogPage = function () {
   for (var i = 0; i < blog.articles.length; i++){
     var fullArticle = new CompleteArticle(blog.articles[i]);
     fullArticle.toHTML();
+    blog.populateAboutTab();
     blog.createDropDownFilter(fullArticle.author, '#authorDropDown');
     blog.createDropDownFilter(fullArticle.category, '#categoryDropDown');
   }

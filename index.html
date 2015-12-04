@@ -6,6 +6,7 @@
     <title>Maria's Blog</title>
     <link rel='stylesheet' href='styles/normalize.css' type='text/css'/>
     <link rel='stylesheet' href='styles/blogStyles.css' type='text/css'/>
+    <meta name='viewport' content='width=device-width, initial-scale=1'/>
 
   </head>
 
@@ -18,24 +19,38 @@
       </div>
 
       <nav>
-        <a href='#'>Articles</a>
-        <a href='#'>About</a>
-        <a href='https://twitter.com/'>Twitter</a>
-        <a href='https://github.com/MiaRomero'>GitHub</a>
+        <div class='tabLinks'>
 
-        <select id='categoryDropDown'>
-            <option>-- Filter articles by category --</option>
-        </select>
+            <a href='#'>Home</a>
+            <a href='#'>About</a>
+            <a href='https://twitter.com/'>Twitter</a>
+            <a href='https://github.com/MiaRomero'>GitHub</a>
 
-        <select id='authorDropDown'>
-            <option>-- Filter articles by author --</option>
+        </div>
+
+        <div class='dropDown'>
+          <select id='categoryDropDown'>
+              <option>Category</option>
+          </select>
+
+          <select id='authorDropDown'>
+              <option>Author</option>
         </select>
+      </div>
       </nav>
     </header>
 
     <main>
 
-      <article>
+      <div class='tabContent'>
+        <div id='home'></div>
+        <div id='about'>
+          <p></p>
+        </div>
+      </div>
+
+      <div>
+        <article>
         <h2 class='articleTitle'></h2>
         <div class='author'></div>
         <p class='publishDate'></p>
@@ -44,13 +59,14 @@
         <a class='readMore'href=''></a>
         <a class='readLess'href=''></a>
       </article>
-
+    </div>
     </main>
 
     <footer>
       <p>footerFooterFooter</p>
     </footer>
 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.amd.min.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
     <script src='blogData.js'></script>
     <script src='article.js'></script>

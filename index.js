@@ -14,7 +14,20 @@ $(function () {
     blog.truncateArticles();
   });
 
+  $('header').on('click', '.tabLinks ul :nth-child(2)', function(event) {
+    event.preventDefault();
+    $('article').hide();
+    $('#about p').show();
+  });
+
+  $('header').on('click', '.tabLinks ul :first-child', function(event) {
+    event.preventDefault();
+    $('article').show();
+    $('#about p').hide();
+  });
+
   $('#authorDropDown').change(function (){
+    //console.log($(this).find(':selected').text());
     var selected = $('#authorDropDown').val();
     var chosenAuthor = 'By ' + selected;
     var filterByText = $('#authorDropDown option:first-child').text();
