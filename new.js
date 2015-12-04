@@ -1,4 +1,5 @@
 var newEntry = {};
+// var marked = require('marked');
 
 $('#new-form').change(function() {
   newEntry.articleTitle = $('#article-title').val();
@@ -6,8 +7,7 @@ $('#new-form').change(function() {
   newEntry.author = $('#article-author').val();
   newEntry.authorUrl = $('#article-author-url').val();
   newEntry.publishedOn = new Date();
-  newEntry.articleBody = $('#article-body').val();
-  // console.log(newEntry);
+  newEntry.articleBody = marked($('#article-body').val());
 
   var previewTemplateScript = $('#article-template').html();
   var previewTemplate = Handlebars.compile(previewTemplateScript);
