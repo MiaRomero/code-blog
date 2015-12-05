@@ -1,10 +1,11 @@
 
 body {
-  margin-top: 50px;
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-bottom: 50px;
+  margin-top: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 30px;
   font-family: CenturyGothic;
+  background-color: #5D4A76;
 }
 
 #blogTitle {
@@ -17,18 +18,59 @@ body {
 }
 
 nav {
-  font: Verdana;
-  background-color: #72B5F7;
-  color: #0B0082;
+  font-family: Verdana;
+
+  color: #fffff8;
   margin-top: 10px;
-  text-align: justify;
-  display: inline-block;
+
 }
 
 img {
-  display: inline;
+  display:flex;
+
 }
 
 main {
   text-align: left;
+  background-color: #fffff8;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  margin-top: 30px;
+}
+
+div article {
+  border-width: 5px;
+  border-bottom-color: black;
+
+}
+.tabLinks a {
+  float: left;
+  width: 25%;
+  text-decoration: none;
+  text-align: justify;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #fffff8;
+}
+
+.dropDown select {
+width: 20%;
+}
+
+@media screen and (max-width: 500px) {
+  main{
+  background-color: red;
+  }
+  nav{
+
+  }
+  img {
+    width: 100%;
+  }
+
+
+
+
 }
