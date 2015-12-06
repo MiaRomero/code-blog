@@ -23,6 +23,7 @@ blog.sortArticlesByDate = function () {
    */
 blog.truncateArticles = function () {
   $('div p:not(:first-child)').hide();
+  $('.category').hide();
   $('.readMore').show();
   $('.readLess').hide();
 };
@@ -68,9 +69,9 @@ blog.loadBlogPage = function () {
   for (var i = 0; i < blog.articles.length; i++){
     var fullArticle = new CompleteArticle(blog.articles[i]);
     fullArticle.toHTML();
-    blog.populateAboutTab();
     blog.createDropDownFilter(fullArticle.author, '#authorDropDown');
     blog.createDropDownFilter(fullArticle.category, '#categoryDropDown');
   }
+  blog.populateAboutTab();
   blog.truncateArticles();
 };
