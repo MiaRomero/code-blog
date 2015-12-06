@@ -1,7 +1,7 @@
 
 var about = 'I was born.  I have not died yet.  I have hobbies.';
 
-var articles = [
+var rawData = [
   {
     title:       'Bacon Ipsum',
     category:    'food',

@@ -23,20 +23,14 @@ CompleteArticle.prototype.calculateDaysAgo = function (date) {
 };
 
 /**
-   * Clones the article element, formats the clone with the apporpriate info
-   * from the oject that calls it, and inserts it into the DOM.
+   * Takes the new object, adds the daysAgo property, uses the handlebars
+   * template to insert it into the DOM.
    */
 CompleteArticle.prototype.toHTML = function () {
-  var daysAgo = this.calculateDaysAgo(this.milliDate);
-  var $newClone = $('article:last').clone();
+  this.daysAgo = this.calculateDaysAgo(this.milliDate);
 
-  $newClone.find('.articleTitle').text(this.title);
-  $newClone.find('.author').html('<p>'+'By '+'<a href= "' + this.authorUrl + '">' + this.author + '</a></p>');
-  $newClone.find('.publishDate').text('Published ' + daysAgo + ' days ago on ' + this.publishedOn);
-  $newClone.find('.articleContent').html(this.body);
-  $newClone.find('.category').text(this.category).hide();
-  $newClone.find('.readMore').text('Read More');
-  $newClone.find('.readLess').text('Read Less');
-
-  $('article:last').after($newClone);
+  var articleTemplateScript = $('#article-template').html();
+  var articleTemplate = Handlebars.compile(articleTemplateScript);
+  var articleHTML = articleTemplate(this);
+  $('.articles').append(articleHTML);
 };

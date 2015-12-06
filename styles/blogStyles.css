@@ -46,7 +46,6 @@ div article {
   padding-bottom: 10px;
   font-weight: bold;
   font-size: 18px;
-
 }
 
 .dropDown select {
@@ -56,4 +55,12 @@ width: 20%;
 @media screen and (max-width: 500px) {
   main{
   background-color: red;
-}}
+  }
+  nav{
+    
+  }
+
+
+
+
+}
