@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 
   <head>
@@ -7,6 +6,7 @@
     <title>Maria's Blog</title>
     <link rel='stylesheet' href='styles/normalize.css' type='text/css'/>
     <link rel='stylesheet' href='styles/blogStyles.css' type='text/css'/>
+    <meta name='viewport' content='width=device-width, initial-scale=1'/>
 
   </head>
 
@@ -15,40 +15,62 @@
 
       <div id='blogTitle'>
         <h1>Maria's Blog</h1>
-        <h3>The shocking power of static pages</h3>
+        <h3>Some super exciting theme goes here</h3>
       </div>
 
       <nav>
-        <a href='sample/articles.com'>Articles</a>
-        <a href='sample/about.com'>About</a>
-        <a href='sample/twitter.com'>Twitter</a>
-        <a href='https://github.com/MiaRomero'>GitHub</a>
-      </nav>
+        <div class='tabLinks'>
 
+            <a href='#'>Home</a>
+            <a href='#'>About</a>
+            <a href='https://twitter.com/'>Twitter</a>
+            <a href='https://github.com/MiaRomero'>GitHub</a>
+
+        </div>
+
+        <div class='dropDown'>
+          <select id='categoryDropDown'>
+              <option>Category</option>
+          </select>
+
+          <select id='authorDropDown'>
+              <option>Author</option>
+        </select>
+      </div>
+      </nav>
     </header>
 
     <main>
 
-      <article>
-        <h2 class='articleTitle'></h2>
-        <p class='author'></p>
-        <p class='publishDate'></p>
-        <p class='articleContent'></p>
-      </article>
+      <div class='tabContent'>
+        <div id='home'></div>
+        <div id='about'>
+          <p></p>
+        </div>
+      </div>
 
+      <div>
+        <article>
+        <h2 class='articleTitle'></h2>
+        <div class='author'></div>
+        <p class='publishDate'></p>
+        <div class='category'></div>
+        <div class='articleContent'></div>
+        <a class='readMore'href=''></a>
+        <a class='readLess'href=''></a>
+      </article>
+    </div>
     </main>
 
     <footer>
       <p>footerFooterFooter</p>
     </footer>
 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.amd.min.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
     <script src='blogData.js'></script>
     <script src='article.js'></script>
     <script src='blog.js'></script>
-
     <script src='index.js'></script>
-
-
   </body>
 </html>
