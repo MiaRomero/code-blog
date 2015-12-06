@@ -19,7 +19,7 @@
         <div class='publishDate'>Published {{daysAgo}} days ago on {{publishedOn}}</div>
         <div class='category'>{{category}}</div>
         <div class='articleContent'>{{{body}}}</div>
-        <a class='readMore' href=''>Read More</a>
+        <a class='readMore' href=''>Read More . . .</a>
         <a class='readLess' href=''>Read Less</a>
       </article>
     </script>
@@ -30,27 +30,26 @@
 
       <div id='blogTitle'>
         <h1>Maria's Blog</h1>
-        <h3>Some super exciting theme goes here</h3>
       </div>
 
       <nav>
         <div class='tabLinks'>
-            <a href='#'><span class="icon-home"></span>   Home</a>
-            <a href='#'><span class="icon-user"></span>   About</a>
-            <a href='https://twitter.com/'><span class="icon-twitter"></span>   Twitter</a>
-            <a href='https://github.com/MiaRomero'><span class="icon-github4"></span>   GitHub</a>
-        </div>
-
-        <div class='dropDown'>
-          <select id='categoryDropDown'>
-              <option>Category</option>
-          </select>
-
-          <select id='authorDropDown'>
-              <option>Author</option>
-          </select>
+            <a href='#'></span>Home</a>
+            <a href='#'></span>About</a>
+            <a href='https://twitter.com/'>Twitter</a>
+            <a href='https://github.com/MiaRomero'>GitHub</a>
         </div>
       </nav>
+
+      <div class='dropDowns'>
+        <p>Search by:</p>
+        <select id='categoryDropDown'>
+            <option>Category</option>
+        </select>
+        <select id='authorDropDown'>
+            <option>Author</option>
+        </select>
+      </div>
     </header>
 
     <main>
