@@ -4,10 +4,25 @@
   <head>
 
     <title>Maria's Blog</title>
+
     <link rel='stylesheet' href='styles/normalize.css' type='text/css'/>
+    <link rel='stylesheet' href='https://i.icomoon.io/public/temp/7b982fd8a7/UntitledProject/style.css'/>
     <link rel='stylesheet' href='styles/blogStyles.css' type='text/css'/>
     <meta name='viewport' content='width=device-width, initial-scale=1'/>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js'></script>
 
+    <script id='article-template' type='text/x-handlebars-template'>
+      <article>
+        <h2 class='articleTitle'>{{title}}</h2>
+        <div class='author'><p>By <a href='"' + {{authorURl}} + '"'>{{author}}</a></p></div>
+        <div class='publishDate'>Published {{daysAgo}} days ago on {{publishedOn}}</div>
+        <div class='category'>{{category}}</div>
+        <div class='articleContent'>{{{body}}}</div>
+        <a class='readMore' href=''>Read More . . .</a>
+        <a class='readLess' href=''>Read Less</a>
+      </article>
+    </script>
   </head>
 
   <body>
@@ -15,29 +30,26 @@
 
       <div id='blogTitle'>
         <h1>Maria's Blog</h1>
-        <h3>Some super exciting theme goes here</h3>
       </div>
 
       <nav>
         <div class='tabLinks'>
-
-            <a href='#'>Home</a>
-            <a href='#'>About</a>
+            <a href='#'></span>Home</a>
+            <a href='#'></span>About</a>
             <a href='https://twitter.com/'>Twitter</a>
             <a href='https://github.com/MiaRomero'>GitHub</a>
-
         </div>
+      </nav>
 
-        <div class='dropDown'>
-          <select id='categoryDropDown'>
-              <option>Category</option>
-          </select>
-
-          <select id='authorDropDown'>
-              <option>Author</option>
+      <div class='dropDowns'>
+        <p>Search by:</p>
+        <select id='categoryDropDown'>
+            <option>Category</option>
+        </select>
+        <select id='authorDropDown'>
+            <option>Author</option>
         </select>
       </div>
-      </nav>
     </header>
 
     <main>
@@ -49,25 +61,13 @@
         </div>
       </div>
 
-      <div>
-        <article>
-        <h2 class='articleTitle'></h2>
-        <div class='author'></div>
-        <p class='publishDate'></p>
-        <div class='category'></div>
-        <div class='articleContent'></div>
-        <a class='readMore'href=''></a>
-        <a class='readLess'href=''></a>
-      </article>
-    </div>
+      <div class='articles'></div>
     </main>
 
     <footer>
       <p>footerFooterFooter</p>
     </footer>
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.amd.min.js'></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
     <script src='blogData.js'></script>
     <script src='article.js'></script>
     <script src='blog.js'></script>
