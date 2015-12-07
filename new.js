@@ -1,12 +1,12 @@
 var newEntry = {};
 
 $('#entryForm').change(function() {
-  newEntry.articleTitle = $('#articleTitle').val();
+  newEntry.title = $('#articleTitle').val();
   newEntry.category = $('#category').val();
   newEntry.author = $('#author').val();
   newEntry.authorUrl = $('#authorUrl').val();
   newEntry.publishedOn = new Date();
-  newEntry.articleBody = marked($('#articleBody').val());
+  newEntry.body = marked($('#articleBody').val());
 
   var previewTemplateScript = $('#article-template').html();
   var previewTemplate = Handlebars.compile(previewTemplateScript);

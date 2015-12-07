@@ -18,11 +18,11 @@
 
     <script id='article-template' type='text/x-handlebars-template'>
       <article>
-        <h2 class='articleTitle'>{{articleTitle}}</h2>
+        <h2 class='articleTitle'>{{title}}</h2>
         <div class='author'><p>By <a href='"' + {{authorURl}} + '"'>{{author}}</a></p></div>
         <div class='publishDate'>Published on {{publishedOn}}</div>
         <div class='category'>{{category}}</div>
-        <div class='articleContent'>{{{articleBody}}}</div>
+        <div class='articleContent'>{{{body}}}</div>
         <a class='readMore' href=''>Read More</a>
         <a class='readLess' href=''>Read Less</a>
       </article>
