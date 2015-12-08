@@ -8,28 +8,16 @@ $('#entryForm').change(function() {
   newEntry.publishedOn = new Date();
   newEntry.body = marked($('#articleBody').val());
 
-  // $.get('templates/article.handlebars', function(result){
-  //   var articleTemplateScript = result;
-  //   var articleTemplate = Handlebars.compile(articleTemplateScript);
-  //   var articleHTML = articleTemplate(articles);
-  //   $('.articles').append(articleHTML);
+$.get('templates/article.handlebars', function(result) {
 
-  $.get('templates/article.handlebars', function(result){
-      var previewTemplateScript = $('#article-template').html();
-      var previewTemplate = Handlebars.compile(previewTemplateScript);
-      var previewHTML = previewTemplate(newEntry);
-      $('#preview').empty().append(previewHTML);
-      $('pre code').each(function (i, block){
-        hljs.highlightBlock(block);
-      }
-    });
+  var previewTemplateScript = $('#article-template').html();
+  var previewTemplate = Handlebars.compile(previewTemplateScript);
+  var previewHTML = previewTemplate(newEntry);
 
+  $('#preview').empty().append(previewHTML);
 
-
-
-
-
-  var newArticle = JSON.stringify(newEntry);
-  $('#jsonString').val(newArticle);
-
+  $('pre code').each(function (i, block){
+    hljs.highlightBlock(block);
+  });
+});
 });

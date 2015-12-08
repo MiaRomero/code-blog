@@ -1,7 +1,7 @@
 
 var blog = {};
-blog.articles = rawData;
-blog.about = about;
+blog.articles = [];
+blog.about = "string";
 
 blog.determineData = function () {
   //get storedEtag
