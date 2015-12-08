@@ -1,4 +1,4 @@
 # code-blog
 
 
-Assignment for Class 2 - jQuery and Events
+Assignment for Class 6 - AJAX and JSON
