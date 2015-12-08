@@ -33,3 +33,16 @@ CompleteArticle.prototype.toHTML = function (handlebarsReturn) {
   var articleHTML = articleTemplate(this);
   $('.articles').append(articleHTML);
 };
+
+setCurrentEtag = function () {
+
+  $.ajax({
+    type: 'HEAD',
+    url: 'http://localhost/GitHub/code-blog/',
+    success: function(data, status, xhr) {
+      localStorage.setItem('currentEtag', (xhr.getResponseHeader('ETag')));
+      var storedEtag = localStorage.getItem('storedEtag');
+      console.log(localStorage.getItem('storedEtag'));
+    }
+  });
+};

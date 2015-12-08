@@ -3,6 +3,32 @@ var blog = {};
 blog.articles = rawData;
 blog.about = about;
 
+blog.determineData = function () {
+  //get storedEtag
+  //get currentEtag
+
+  // if(currentEtag === storedEtag){
+  //   //use cached JSON, set blog properties to this
+  // }
+
+  //else {
+    //get data from server, set blog properties to this
+    $.get('data/blogData.js')
+
+      .done(function (result) {
+        console.log('THIS IS RESULT:  ' + typeof(result));
+        result = JSON.parse(eval(result));
+        console.log('RESULT PARSED' + result);
+        blog.articles = result;
+        //console.log('THIS IS BLOG.ARTICLES  ' + blog.articles);
+        console.log('testing');
+
+      });
+  //}
+
+
+};
+
 /**
    * Converts each publishedOn date in article objects to milliseconds, adds that
    * value to milliDate property for each object, sorts article array by publishedOn
@@ -60,20 +86,28 @@ blog.populateAboutTab = function () {
 };
 
 /**
-   * Populates Articles and dropdown filters.
+   * Creates article objects for each article in the data set. Populates dropdown
+   * filters based on the selected filter categories from article object properties.
+   * Truncates each article.
+   */
+blog.createArticles = function (data) {
+  for (var i = 0; i < blog.articles.length; i++){
+    var fullArticle = new CompleteArticle(blog.articles[i]);
+    fullArticle.toHTML(data);
+    blog.createDropDownFilter(fullArticle.author, '#authorDropDown');
+    blog.createDropDownFilter(fullArticle.category, '#categoryDropDown');
+  };
+  blog.truncateArticles();
+};
+
+/**
+   * Populates articles and dropdown filters.
    */
 blog.populateArticleDiv = function() {
   $.get('templates/article.handlebars')
 
-    .done(function createArticles(result) {
-      for (var i = 0; i < blog.articles.length; i++){
-        var fullArticle = new CompleteArticle(blog.articles[i]);
-        fullArticle.toHTML(result);
-        blog.createDropDownFilter(fullArticle.author, '#authorDropDown');
-        blog.createDropDownFilter(fullArticle.category, '#categoryDropDown');
-      }
-      blog.truncateArticles();
-    })
+     .done(blog.createArticles)
+           //check for new data?
 
     .fail(function errorMessage() {
       $('.articles').html('<p>Sorry, articles cannot be loaded.  Please refresh your browser.</p>');
@@ -87,6 +121,8 @@ blog.populateArticleDiv = function() {
    */
 blog.loadBlogPage = function () {
   blog.sortArticlesByDate();
+  //blog.determineData();
   blog.populateArticleDiv();
   blog.populateAboutTab();
+  // checkForNewArticles();
 };
