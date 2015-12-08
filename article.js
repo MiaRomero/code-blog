@@ -26,15 +26,10 @@ CompleteArticle.prototype.calculateDaysAgo = function (date) {
    * Takes the new object, adds the daysAgo property, uses the handlebars
    * template to insert it into the DOM.
    */
-CompleteArticle.prototype.toHTML = function () {
+CompleteArticle.prototype.toHTML = function (handlebarsReturn) {
   this.daysAgo = this.calculateDaysAgo(this.milliDate);
-  var articles = this;
-
-  $.get('templates/article.handlebars', function(result){
-    var articleTemplateScript = result;
-    var articleTemplate = Handlebars.compile(articleTemplateScript);
-    var articleHTML = articleTemplate(articles);
-    $('.articles').append(articleHTML);
-    blog.truncateArticles();
-  });
+  var articleTemplateScript = handlebarsReturn;
+  var articleTemplate = Handlebars.compile(articleTemplateScript);
+  var articleHTML = articleTemplate(this);
+  $('.articles').append(articleHTML);
 };

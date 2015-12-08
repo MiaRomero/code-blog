@@ -60,19 +60,27 @@ blog.populateAboutTab = function () {
 };
 
 /**
+   * Populates Articles and dropdown filters.
+   */
+blog.populateArticleDiv = function() {
+  $.get('templates/article.handlebars', function(result) {
+    for (var i = 0; i < blog.articles.length; i++){
+      var fullArticle = new CompleteArticle(blog.articles[i]);
+      fullArticle.toHTML(result);
+      blog.createDropDownFilter(fullArticle.author, '#authorDropDown');
+      blog.createDropDownFilter(fullArticle.category, '#categoryDropDown');
+    }
+    blog.truncateArticles();
+  });
+};
+
+/**
    * Creates a completed article object from each object in article array,
    * posts each to webpage.  Displays blog properly with tabs, drop downs, and
    * truncated articles.
    */
 blog.loadBlogPage = function () {
   blog.sortArticlesByDate();
-  for (var i = 0; i < blog.articles.length; i++){
-    var fullArticle = new CompleteArticle(blog.articles[i]);
-    fullArticle.toHTML();
-    blog.createDropDownFilter(fullArticle.author, '#authorDropDown');
-    blog.createDropDownFilter(fullArticle.category, '#categoryDropDown');
-
-  }
+  blog.populateArticleDiv();
   blog.populateAboutTab();
-  //blog.truncateArticles();
 };
