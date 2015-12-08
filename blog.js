@@ -63,15 +63,21 @@ blog.populateAboutTab = function () {
    * Populates Articles and dropdown filters.
    */
 blog.populateArticleDiv = function() {
-  $.get('templates/article.handlebars', function(result) {
-    for (var i = 0; i < blog.articles.length; i++){
-      var fullArticle = new CompleteArticle(blog.articles[i]);
-      fullArticle.toHTML(result);
-      blog.createDropDownFilter(fullArticle.author, '#authorDropDown');
-      blog.createDropDownFilter(fullArticle.category, '#categoryDropDown');
-    }
-    blog.truncateArticles();
-  });
+  $.get('templates/article.handlebars')
+
+    .done(function createArticles(result) {
+      for (var i = 0; i < blog.articles.length; i++){
+        var fullArticle = new CompleteArticle(blog.articles[i]);
+        fullArticle.toHTML(result);
+        blog.createDropDownFilter(fullArticle.author, '#authorDropDown');
+        blog.createDropDownFilter(fullArticle.category, '#categoryDropDown');
+      }
+      blog.truncateArticles();
+    })
+
+    .fail(function errorMessage() {
+      $('.articles').html('<p>Sorry, articles cannot be loaded.  Please refresh your browser.</p>');
+    });
 };
 
 /**
