@@ -28,9 +28,13 @@ CompleteArticle.prototype.calculateDaysAgo = function (date) {
    */
 CompleteArticle.prototype.toHTML = function () {
   this.daysAgo = this.calculateDaysAgo(this.milliDate);
+  var articles = this;
 
-  var articleTemplateScript = $('#article-template').html();
-  var articleTemplate = Handlebars.compile(articleTemplateScript);
-  var articleHTML = articleTemplate(this);
-  $('.articles').append(articleHTML);
+  $.get('templates/article.handlebars', function(result){
+    var articleTemplateScript = result;
+    var articleTemplate = Handlebars.compile(articleTemplateScript);
+    var articleHTML = articleTemplate(articles);
+    $('.articles').append(articleHTML);
+    blog.truncateArticles();
+  });
 };

@@ -1,5 +1,5 @@
 
-var about = 'I was born.  I have not died yet.  I have hobbies.';
+var about = 'I was born.  I have not died yet.  I have hobbies. More hobbies. more.';
 
 var rawData = [
 

@@ -22,7 +22,7 @@ blog.sortArticlesByDate = function () {
    * Shows only the first paragraph of each article
    */
 blog.truncateArticles = function () {
-  $('div p:not(:first-child)').hide();
+  $('.articleContent p:not(:first-child)').hide();
   $('.category').hide();
   $('.readMore').show();
   $('.readLess').hide();
@@ -71,7 +71,8 @@ blog.loadBlogPage = function () {
     fullArticle.toHTML();
     blog.createDropDownFilter(fullArticle.author, '#authorDropDown');
     blog.createDropDownFilter(fullArticle.category, '#categoryDropDown');
+
   }
   blog.populateAboutTab();
-  blog.truncateArticles();
+  //blog.truncateArticles();
 };
