@@ -1,38 +1,45 @@
 var stats = {};
 
+stats.pushToAllAuthorsArray = function (object, index, array) {
+  this.push(array[index].author);
+};
 
-// stats.keepUnique = function (elementValue, elementIndex, array){
-//   return array.indexOf(elementValue) === elementIndex;
-// };
+stats.keepUnique = function (elementValue, elementIndex, array){
+  return array.indexOf(elementValue) === elementIndex;
+};
 
 stats.calculateUniqueAuthors = function () {
-  var uniqueAuthors = [];
-  console.log('testing artilce index 1: ' + blog.articles[1].author);
+  var allAuthors = [];
+  blog.articles.map(stats.pushToAllAuthorsArray, allAuthors);
+  var uniqueAuthors = allAuthors.filter(stats.keepUnique);
+  return uniqueAuthors;
+};
 
-  blog.articles.map(function (object, index, array){
-
-    console.log('author: ' + array[index].author);
-  });
+stats.undoMarkdown = function (object, index, array) {
+  var newBody = marked(array[index].markdown);
+  array[index].body = $(newBody).text();
 
 };
 
+stats.replaceArticleBody = function () {
+  (blog.articles).forEach(stats.undoMarkdown, blog.articles);
 
-
+};
 
 stats.calculateStatistics = function (data) {
   blog.articles = data;
 
   $('#totalArticles').text('Total number of articles = ' + blog.articles.length);
 
-  stats.calculateUniqueAuthors();
+  $('#totalAuthors').text('Total unique authors = ' + (stats.calculateUniqueAuthors()).length);
 
-
-
+  stats.replaceArticleBody();
+  
 
 };
 
 stats.getData = function () {
-  console.log ('test1');
+  console.log ('testing get data');
   $.getJSON('data/hackerIpsum.json')
 
     .done(stats.calculateStatistics)
