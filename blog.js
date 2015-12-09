@@ -1,34 +1,38 @@
 
 var blog = {};
 blog.articles = [];
-blog.about = "string";
+blog.about = 'string';
 
 blog.determineData = function () {
-  //get storedEtag
-  //get currentEtag
 
-  // if(currentEtag === storedEtag){
-  //   //use cached JSON, set blog properties to this
-  // }
+  console.log('before get data: ' + blog.articles);
+  $.getJSON('data/hackerIpsum.json')
+    .done(function (result) {
+      console.log(result);
+      blog.articles = result;
+      blog.replaceArticleBody();
+            console.log('THIS IS BLOG.ARTICLES  ' + blog.articles[3]);
+            console.log('testing');
+      blog.loadBlogPage();
+            console.log('loadPage is finished');
+      })
 
-  //else {
-    //get data from server, set blog properties to this
-    $.get('data/blogData.js')
-
-      .done(function (result) {
-        console.log('THIS IS RESULT:  ' + typeof(result));
-        result = JSON.parse(eval(result));
-        console.log('RESULT PARSED' + result);
-        blog.articles = result;
-        //console.log('THIS IS BLOG.ARTICLES  ' + blog.articles);
-        console.log('testing');
-
+      .fail( function () {
+        console.log('FAIL');
       });
-  //}
-
-
 };
 
+//callback function: renders markdown characters from article body
+blog.undoMarkdown = function (object, index, array) {
+  var newBody = marked(object.markdown);
+  object.body = newBody;
+};
+
+//replaces article body with "un"markdowned version
+blog.replaceArticleBody = function () {
+  (blog.articles).forEach(blog.undoMarkdown);
+
+};
 /**
    * Converts each publishedOn date in article objects to milliseconds, adds that
    * value to milliDate property for each object, sorts article array by publishedOn
@@ -48,7 +52,7 @@ blog.sortArticlesByDate = function () {
    * Shows only the first paragraph of each article
    */
 blog.truncateArticles = function () {
-  $('.articleContent p:not(:first-child)').hide();
+  $('.articleContent p h2:not(:first-child)').hide();
   $('.category').hide();
   $('.readMore').show();
   $('.readLess').hide();
@@ -120,8 +124,8 @@ blog.populateArticleDiv = function() {
    * truncated articles.
    */
 blog.loadBlogPage = function () {
-  blog.sortArticlesByDate();
   //blog.determineData();
+  blog.sortArticlesByDate();
   blog.populateArticleDiv();
   blog.populateAboutTab();
   // checkForNewArticles();

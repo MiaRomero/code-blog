@@ -1,10 +1,12 @@
 
 $(function () {
-  blog.loadBlogPage();
+  //webDB.init();
+  blog.determineData();
+  //blog.loadBlogPage();
 
   $('main').on('click', '.readMore',function(event){
     event.preventDefault();
-    $(this).parent().find('div p').show();
+    $(this).parent(':first-child').show();
     $(this).hide();
     $(this).parent().find('.readLess').show();
   });
