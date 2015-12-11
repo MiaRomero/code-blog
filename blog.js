@@ -5,21 +5,18 @@ blog.about = 'string';
 
 blog.determineData = function () {
 
-  console.log('before get data: ' + blog.articles);
   $.getJSON('data/hackerIpsum.json')
     .done(function (result) {
-      console.log(result);
-      blog.articles = result;
-      blog.replaceArticleBody();
-            console.log('THIS IS BLOG.ARTICLES  ' + blog.articles[3]);
-            console.log('testing');
-      blog.loadBlogPage();
-            console.log('loadPage is finished');
-      })
+    blog.articles = result;
+    blog.replaceArticleBody();
+    blog.populateDBTable();
+    blog.loadBlogPage();
+    //editor.testDatabase();
+  })
 
-      .fail( function () {
-        console.log('FAIL');
-      });
+  .fail( function () {
+    console.log('get JSON FAIL');
+  });
 };
 
 //callback function: renders markdown characters from article body
@@ -33,6 +30,20 @@ blog.replaceArticleBody = function () {
   (blog.articles).forEach(blog.undoMarkdown);
 
 };
+
+blog.locationSearch = function () {
+  var testAdmin = window.location.search.substring(1);
+  if (testAdmin === 'admin=true'){
+    blog.switchToAdminMode();
+  }
+};
+
+blog.switchToAdminMode = function () {
+  $('.articleTitle').after('<a class="editMode" href="edit_articles.html">EDIT</a>');
+
+
+};
+
 /**
    * Converts each publishedOn date in article objects to milliseconds, adds that
    * value to milliDate property for each object, sorts article array by publishedOn
@@ -101,6 +112,7 @@ blog.createArticles = function (data) {
     blog.createDropDownFilter(fullArticle.author, '#authorDropDown');
     blog.createDropDownFilter(fullArticle.category, '#categoryDropDown');
   };
+  blog.locationSearch();
   blog.truncateArticles();
 };
 
@@ -111,6 +123,7 @@ blog.populateArticleDiv = function() {
   $.get('templates/article.handlebars')
 
      .done(blog.createArticles)
+
            //check for new data?
 
     .fail(function errorMessage() {
@@ -125,8 +138,30 @@ blog.populateArticleDiv = function() {
    */
 blog.loadBlogPage = function () {
   //blog.determineData();
+
   blog.sortArticlesByDate();
   blog.populateArticleDiv();
+  //blog.locationSearch();
   blog.populateAboutTab();
   // checkForNewArticles();
+};
+
+
+
+
+//make this a callback function with only the webDB call.  Do the forEach in another function.
+blog.populateDBTable = function (){
+
+
+
+  blog.articles.forEach(function(object){
+    webDB.execute([
+      {
+        'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, body) VALUES (?, ?, ?, ?, ?, ?);',
+        'data': [object.title, object.author, object.authorUrl, object.category, object.publishedOn, object.body],
+      }
+    ])
+  })
+
+
 };
