@@ -55,3 +55,18 @@ webDB.execute = function (sql, callback) {
     }
   );
 };
+
+webDB.reconnect = function() {
+  // reconnect to DB
+  try {
+    if (openDatabase) {
+      webDB.verbose(true);
+      webDB.connect('blogDB', 'Blog Database', 5*1024*1024);
+      //webDB.setupTables();
+    } else {
+      console.log('Web Databases not supported.');
+    }
+  } catch (e) {
+    console.error('Error occured during DB init. Web Database may not be supported.');
+  }
+};

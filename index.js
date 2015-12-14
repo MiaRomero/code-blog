@@ -2,8 +2,6 @@
 $(function () {
   webDB.init();
   blog.determineData();
-  blog.loadBlogPage();
-
 
   $('main').on('click', '.readMore',function(event){
     event.preventDefault();
@@ -49,17 +47,10 @@ $(function () {
     $('#authorDropDown').prop('selectedIndex',0);;
   });
 
-//   click on edit button:
-//
-//   $("a").click(function(e) {
-//     e.preventDefault();
-//     window.location.href = $(this).attr("href") + '?Hello=True';
-// }
-
   $('main').on('click', '.editMode', function(event){
     event.preventDefault();
-    $(this).attr("href") + "string";
-
-});
+    //get article id, add to href
+    location.href='edit_articles.html?id=12'; //+ id;
+  });
 
 });
