@@ -5,7 +5,7 @@ $(function () {
 
   $('main').on('click', '.readMore',function(event){
     event.preventDefault();
-    $(this).parent(':first-child').show();
+    $(this).parent().find('.articleContent').children().show();
     $(this).hide();
     $(this).parent().find('.readLess').show();
   });

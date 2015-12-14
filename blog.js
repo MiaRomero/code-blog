@@ -57,8 +57,6 @@ blog.truncateArticles = function () {
   $('article .articleContent p:first-of-type').show();
   $('article .articleContent h2').hide();
   $('article .articleContent h2:first-of-type').show();
-
-
   $('.category').hide();
   $('.readMore').show();
   $('.readLess').hide();
