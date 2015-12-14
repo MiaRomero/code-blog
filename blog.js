@@ -15,8 +15,6 @@ blog.determineData = function () {
   .fail( function () {
     console.log('get JSON FAIL');
   });
-
-
 };
 
 //callback function: renders markdown characters from article body
@@ -55,7 +53,12 @@ blog.sortArticlesByDate = function () {
 
 //Shows only the first paragraph of each article
 blog.truncateArticles = function () {
-  //$('article .articleContent:first-of-type(p)').show();
+  $('article .articleContent p').hide();
+  $('article .articleContent p:first-of-type').show();
+  $('article .articleContent h2').hide();
+  $('article .articleContent h2:first-of-type').show();
+
+
   $('.category').hide();
   $('.readMore').show();
   $('.readLess').hide();
