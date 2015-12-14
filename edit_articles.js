@@ -43,6 +43,8 @@
         $('#articleBody').text(results[0].body);
 
         editor.displayPreview(results);
+        var newArticle = JSON.stringify(newEntry);
+        $('#article-json').val(newArticle);
       });
   };
 

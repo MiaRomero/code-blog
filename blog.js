@@ -136,7 +136,7 @@ blog.populateDBTable = function (){
     webDB.execute([
       {
         'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, body) VALUES (?, ?, ?, ?, ?, ?);',
-        'data': [object.title, object.author, object.authorUrl, object.category, object.publishedOn, object.body],
+        'data': [object.title, object.author, object.authorUrl, object.category, object.publishedOn, object.markdown],
       }
     ]);
   });

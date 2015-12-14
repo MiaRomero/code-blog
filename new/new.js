@@ -19,5 +19,7 @@ $.get('templates/article.handlebars', function(result) {
   $('pre code').each(function (i, block){
     hljs.highlightBlock(block);
   });
+  var newArticle = JSON.stringify(newEntry);
+  $('#article-json').val(newArticle);
 });
 });

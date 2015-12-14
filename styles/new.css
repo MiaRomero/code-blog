@@ -17,6 +17,9 @@ label{
 textarea {
   border-color: #A89FD9;
 }
+h1 {
+  text-decoration: underline;
+}
 #entryForm label {
   display: block;
   padding-bottom: 15px;
