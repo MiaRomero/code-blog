@@ -1,7 +1,7 @@
 
 $(function () {
-  webDB.init();
-  blog.determineData();
+  // webDB.init();
+  // blog.determineData();
 
   $('main').on('click', '.readMore',function(event){
     event.preventDefault();

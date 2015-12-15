@@ -21,6 +21,7 @@
 
     $.get('templates/article.handlebars', function(result) {
       var previewTemplateScript = $('#article-template').html();
+      console.log(previewTemplateScript);
       var previewTemplate = Handlebars.compile(previewTemplateScript);
       var previewHTML = previewTemplate(entry);
 
@@ -43,8 +44,8 @@
         $('#articleBody').text(results[0].body);
 
         editor.displayPreview(results);
-        var newArticle = JSON.stringify(newEntry);
-        $('#article-json').val(newArticle);
+        // var newArticle = JSON.stringify(newEntry);
+        // $('#article-json').val(newArticle);
       });
   };
 
