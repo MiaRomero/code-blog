@@ -7,7 +7,13 @@ body {
   font-family: CenturyGothic;
   background-color: #27273B;
 }
-#blogTitle {
+header {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  color: #fffff8;
 }
 nav {
   display: flex;
@@ -18,24 +24,8 @@ nav {
 nav a{
   text-decoration: none;
 }
-.tabLinks {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  width: 100%;
-
-}
-.tabLinks a {
-  color: #D8A3FF;
-}
-.dropDowns {
-  color: #D8A3FF;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-img {
-  display:flex;
+select {
+ margin: 10px;
 }
 main {
   text-align: left;
@@ -50,32 +40,39 @@ div article {
   border-width: 5px;
   border-bottom-color: black;
 }
-.readMore, .readLess {
-  color: #B44EFD;
-  text-decoration: none;
-}
-.author a{
-  text-decoration: none;
-}
-header {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 18px;
-  color: #fffff8;
+img {
+  display:flex;
 }
 footer {
   color: #D8A3FF;
 }
- select {
-  margin: 10px;
+.tabLinks {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+}
+.tabLinks a {
+  color: #D8A3FF;
+}
+.dropDowns {
+  color: #D8A3FF;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.author a{
+  text-decoration: none;
+}
+.readMore, .readLess {
+  color: #B44EFD;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 500px) {
-  main{
+  /*main{
   background-color: red;
-  }
+  }*/
   nav{
   }
   img {
