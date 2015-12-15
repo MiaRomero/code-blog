@@ -1,4 +1,4 @@
 # code-blog
 
 
-Assignment for Class 2 - jQuery and Events
+Assignment for Class 3 - Responsive Design
