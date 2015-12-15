@@ -1,6 +1,6 @@
 
 $(function () {
-  // webDB.init();
+
   // blog.determineData();
 
   $('main').on('click', '.readMore',function(event){
@@ -15,17 +15,17 @@ $(function () {
     blog.truncateArticles();
   });
 
-  $('header').on('click', '.tabLinks :nth-child(2)', function(event) {
-    event.preventDefault();
-    $('article').hide();
-    $('#about p').show();
-  });
-
-  $('header').on('click', '.tabLinks :first-child', function(event) {
-    event.preventDefault();
-    $('article').show();
-    $('#about p').hide();
-  });
+  // $('header').on('click', '.tabLinks :nth-child(2)', function(event) {
+  //   event.preventDefault();
+  //   $('article').hide();
+  //   $('#about p').show();
+  // });
+  //
+  // $('header').on('click', '.tabLinks :first-child', function(event) {
+  //   event.preventDefault();
+  //   $('article').show();
+  //   $('#about p').hide();
+  // });
 
   $('#authorDropDown').change(function (){
     var selected = $(this).find(':selected').text();

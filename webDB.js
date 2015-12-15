@@ -70,3 +70,5 @@ webDB.reconnect = function() {
     console.error('Error occured during DB init. Web Database may not be supported.');
   }
 };
+
+webDB.init();
