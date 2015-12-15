@@ -103,7 +103,7 @@ blog.createArticlesAndFilters = function (data) {
 
 //Populates articles and dropdown filters.
 blog.populateArticleDivs = function() {
-  $.get('templates/article.handlebars')
+  $.get('/templates/article_hbs.html')
 
      .done(function (data) {
        blog.replaceArticleBody();
@@ -112,8 +112,6 @@ blog.populateArticleDivs = function() {
        blog.truncateArticles();
        blog.determineAdminMode();
      })
-
-           //check for new data?
 
     .fail(function errorMessage() {
       $('.articles').html('<p>Sorry, articles cannot be loaded.  Please refresh your browser.</p>');
@@ -129,13 +127,12 @@ blog.loadBlogPage = function () {
   // checkForNewArticles();
 };
 
-//make this a callback function with only the webDB call.  Do the forEach in another function.
+//Populates database
 blog.populateDBTable = function (){
-
   blog.articles.forEach(function(object){
     webDB.execute([
       {
-        'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, body) VALUES (?, ?, ?, ?, ?, ?);',
+        'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, markdown) VALUES (?, ?, ?, ?, ?, ?);',
         'data': [object.title, object.author, object.authorUrl, object.category, object.publishedOn, object.markdown],
       }
     ]);
