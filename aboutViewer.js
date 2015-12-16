@@ -1,11 +1,6 @@
-
-//Populates About tab.
-// blog.populateAboutTab = function () {
-//   $('#about p').text(this.about).hide();
-// };
-
 var repos = {};
 repos.all = [];
+repos.branches = [];
 
 repos.RequestAll = function (callback){
 
@@ -27,13 +22,15 @@ repos.contributions = function (callback){
     headers: { Authorization: 'token ' + githubToken }
 
   }).done(function(data){
-    console.log(data);
-
+    repos.branches = data;
+    repos.branches.forEach(function (currentElement, index, array){
+      $('#branches').append($('<li>').text(array[index].name));
+    });
   }).done(callback);
 };
 
 var about = {};
-about.blurb = 'string of some sort';
+about.blurb = 'About me me me.  I\'m in Code 301.  This is my project.';
 
 about.index = function () {
   $('.articles').hide();
@@ -44,5 +41,6 @@ about.index = function () {
   repos.all.forEach(function (currentElement, index, array){
     $('#repos').append($('<li>').text(array[index].full_name));
   });
+  $('#branches').text('And here are the branches on my current project repo: ');
   repos.contributions();
 };
