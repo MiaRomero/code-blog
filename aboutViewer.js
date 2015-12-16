@@ -6,19 +6,18 @@ repos.RequestAll = function (callback){
 
   $.ajax({
     type:'GET',
-    url: 'https://api.github.com/users/MiaRomero/repos',
+    url: '/github/users/MiaRomero/repos',
     headers: { Authorization: 'token ' + githubToken }
-
   }).done(function(data){
     console.log(data);
     repos.all = data;
   }).done(callback);
 };
 
-repos.contributions = function (callback){
+repos.branches = function (callback){
   $.ajax({
     type:'GET',
-    url: 'https://api.github.com/repos/MiaRomero/code-blog/branches',
+    url: '/github/repos/MiaRomero/code-blog/branches',
     headers: { Authorization: 'token ' + githubToken }
 
   }).done(function(data){
@@ -42,5 +41,5 @@ about.index = function () {
     $('#repos').append($('<li>').text(array[index].full_name));
   });
   $('#branches').text('And here are the branches on my current project repo: ');
-  repos.contributions();
+  repos.branches();
 };
