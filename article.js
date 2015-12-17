@@ -46,11 +46,10 @@ setCurrentEtag = function () {
 };
 
 CompleteArticle.findByCategory = function(category, callback) {
-  var results = webDB.execute(
+  webDB.execute(
     [{
       'sql': 'SELECT * FROM articles WHERE category = ?',
       'data': [category]
-    }]
+    }], callback
   );
-  console.log('this is results: ' + results); 
 };

@@ -5,14 +5,14 @@ articleController.index = function () {
 };
 
 articleController.category = function (ctx, next) {
-  console.log('in articleController.category function');
-  console.log('ctx:  ' + ctx);
-  console.log('next:  ' + next);
   var categoryData = function (data) {
-    console.log('data: ' + data);
     ctx.articles = data;
-    console.log('ctx.articles:  ' + ctx.articles);
     next();
   };
   CompleteArticle.findByCategory(ctx.params.category, categoryData);
+};
+
+articleController.show = function(ctx, next) {
+  console.log('we\'re now in articleController.show');
+  console.log(ctx.articles);
 };
