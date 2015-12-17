@@ -7,7 +7,6 @@ repos.RequestAll = function (callback){
   $.ajax({
     type:'GET',
     url: '/github/users/MiaRomero/repos',
-    //headers: { Authorization: 'token ' + githubToken }
   }).done(function(data){
     console.log(data);
     repos.all = data;
@@ -18,8 +17,7 @@ repos.branches = function (callback){
   $.ajax({
     type:'GET',
     url: '/github/repos/MiaRomero/code-blog/branches',
-    //headers: { Authorization: 'token ' + githubToken }
-
+  
   }).done(function(data){
     repos.branches = data;
     repos.branches.forEach(function (currentElement, index, array){
