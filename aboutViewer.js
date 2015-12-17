@@ -3,10 +3,9 @@ repos.all = [];
 repos.branches = [];
 
 repos.RequestAll = function (callback){
-
   $.ajax({
     type:'GET',
-    url: '/github/users/MiaRomero/repos',
+    url: '/github/users/MiaRomero/repos'
   }).done(function(data){
     repos.all = data;
   }).done(callback);
@@ -15,8 +14,7 @@ repos.RequestAll = function (callback){
 repos.getBranches = function (callback){
   $.ajax({
     type:'GET',
-    url: '/github/repos/MiaRomero/code-blog/branches',
-
+    url: '/github/repos/MiaRomero/code-blog/branches'
   }).done(function(data){
     repos.branches = data;
   }).done(callback);
