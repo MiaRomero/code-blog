@@ -69,9 +69,9 @@ stats.calculateAverageWordLength = function () {
 
 //calculate average length of article per author
 stats.calculateAverageByAuthor = function () {
-  var avgLengthPerAuthor = $.map(stats.calculateUniqueAuthors(), function (author){
+  var avgLengthPerAuthor = $.map(stats.calculateUniqueAuthors(), function createAuthArrays (author){
     var authArticles = [];
-    (blog.articles).forEach(function (cE, index, array) {
+    (blog.articles).forEach(function filterByAuth(cE, index, array) {
       if(array[index].author === author){
         authArticles.push(array[index]);
       }
@@ -83,15 +83,15 @@ stats.calculateAverageByAuthor = function () {
 };
 
 //displays name of author and their average article length
-stats.displayAuthorAverages = function (){
-  for(var i = 0; i < stats.calculateUniqueAuthors().length; i++){
-    $('#authorAverage').append('<p>' + (stats.calculateUniqueAuthors())[i] + ' average: '
-      + (stats.calculateAverageByAuthor())[i] + '</p>');
-  }
+stats.displayAuthorAverages = function () {
+  (stats.calculateUniqueAuthors()).forEach(function (cE, index, array) {
+    $('#authorAverage').append('<p>' + cE + ' average:  '
+    + (stats.calculateAverageByAuthor()[index]) + ' </p>');
+  });
 };
 
-//calculates and displays statistics for blog
-stats.calculateAndDisplayStatistics = function (data) {
+//displays statistics on blog
+stats.displayStatistics = function (data) {
   blog.articles = data;
   stats.replaceArticleBody();
   $('#totalArticles').text('Total number of articles = ' + blog.articles.length);
@@ -104,7 +104,7 @@ stats.calculateAndDisplayStatistics = function (data) {
 //gets blog data from json file
 stats.getData = function () {
   $.getJSON('data/hackerIpsum.json')
-    .done(stats.calculateAndDisplayStatistics)
+    .done(stats.displayStatistics)
     .fail( function () {
       console.log('JSON fail');
     });
