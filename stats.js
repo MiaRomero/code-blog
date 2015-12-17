@@ -64,46 +64,49 @@ stats.calculateTotalChars = function (array) {
 //calculate average word length on blog
 stats.calculateAverageWordLength = function () {
   var averageWord = Math.round((stats.calculateTotalChars(blog.articles))/(stats.calculateTotalWords(blog.articles)));
-  console.log(averageWord);
   return averageWord;
 };
 
 //calculate average length of article per author
 stats.calculateAverageByAuthor = function () {
-  var X = $.map(stats.calculateUniqueAuthors(), function (value){
-    var author = value;
+  var avgLengthPerAuthor = $.map(stats.calculateUniqueAuthors(), function (author){
     var authArticles = [];
     (blog.articles).forEach(function (cE, index, array) {
       if(array[index].author === author){
-        authArticles.push(array[index].markdown);
+        authArticles.push(array[index]);
       }
     });
-
+    var average = Math.round((stats.calculateTotalWords(authArticles))/authArticles.length);
+    return average;
   });
+  return avgLengthPerAuthor;
 };
 
-
+//displays name of author and their average article length
+stats.displayAuthorAverages = function (){
+  for(var i = 0; i < stats.calculateUniqueAuthors().length; i++){
+    $('#authorAverage').append('<p>' + (stats.calculateUniqueAuthors())[i] + ' average: '
+      + (stats.calculateAverageByAuthor())[i] + '</p>');
+  }
+};
 
 //calculates and displays statistics for blog
-stats.calculateStatistics = function (data) {
+stats.calculateAndDisplayStatistics = function (data) {
   blog.articles = data;
   stats.replaceArticleBody();
   $('#totalArticles').text('Total number of articles = ' + blog.articles.length);
   $('#totalAuthors').text('Total unique authors = ' + (stats.calculateUniqueAuthors()).length);
   $('#totalWords').text('Total number of words on the blog = ' + stats.calculateTotalWords(blog.articles));
   $('#averageWord').text('Average word length on blog = ' + stats.calculateAverageWordLength());
-  stats.calculateAverageByAuthor();
+  stats.displayAuthorAverages();
 };
 
 //gets blog data from json file
 stats.getData = function () {
-  console.log ('testing get data');
   $.getJSON('data/hackerIpsum.json')
-
-    .done(stats.calculateStatistics)
-
+    .done(stats.calculateAndDisplayStatistics)
     .fail( function () {
-      console.log('you suck maria');
+      console.log('JSON fail');
     });
 };
 
