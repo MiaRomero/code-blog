@@ -37,18 +37,21 @@ stats.replaceArticleBody = function () {
 
 
 
-//calculates the total number of words per article object
-stats.calculateWordsPerObject = function (currentArticleObject) {
-  var wordsPerKeyArray = $.map(currentArticleObject, function getWordsPerKey(currentKey, index, array){
-
-    var wordsInKey =  currentKey.match(/\S+/gi).length;
-    return wordsInKey;
-  });
-  var wordsPerObject = wordsPerKeyArray.reduce(function sum(a, b){
-    return a + b;
-  });
-  return wordsPerObject;
+//calculates the total number of words or characters per article
+stats.calculatePerArticle = function (currentArticleObject, regex) {
+  var inBody =  (currentArticleObject.markdown).match(/\S+/gi).length;
+  var inTitle = (currentArticleObject.title).match(/\S+/gi).length;
+  return inBody + inTitle;
 };
+
+//word regex= /\S+/gi
+//letter regex= /[a-z]+/gi
+
+stats.calculateTotalWords = function () {
+  var wordsInBodyArray = $.map(blog.articles, calculatePerArticle(currentValue, ))
+}
+
+
 
 stats.calculateWORDS = function () {
   // var wordsPerArticleArray = $.map(blog.articles, stats.calculateWordsPerObject(currentValue));
@@ -68,12 +71,12 @@ stats.calculateStatistics = function (data) {
   $('#totalAuthors').text('Total unique authors = ' + (stats.calculateUniqueAuthors()).length);
 
   stats.replaceArticleBody();
-  stats.calculateWordsPerObject();
-  stats.calculateWORDS();
-  console.log(wordsPerArticleArray);
+  console.log(stats.calculateWordsPerArticle(blog.articles[8]));
 
-  console.log(stats.calculateWordsPerObject());
-  console.log(stats.calculateItemPerObject());
+
+
+  // console.log(stats.calculateWordsPerObject());
+  // console.log(stats.calculateItemPerObject());
 };
 
 //gets blog data from json file
