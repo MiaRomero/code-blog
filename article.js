@@ -44,3 +44,13 @@ setCurrentEtag = function () {
     }
   });
 };
+
+CompleteArticle.findByCategory = function(category, callback) {
+  var results = webDB.execute(
+    [{
+      'sql': 'SELECT * FROM articles WHERE category = ?',
+      'data': [category]
+    }]
+  );
+  console.log('this is results: ' + results); 
+};
