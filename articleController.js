@@ -5,7 +5,7 @@ articleController.index = function () {
 };
 
 articleController.category = function (ctx, next) {
-  var categoryData = function (data) {
+  var categoryData = function (data) { //rename data to articles?  it is the return of .findByCategory
     ctx.articles = data;
     next();
   };
