@@ -34,13 +34,13 @@ stats.replaceArticleBody = function () {
 //calculates the total number of words per article object
 stats.calculateWordsPerObject = function () {
   var wordsPerKey = $.map(blog.articles[8], function getWordsPerKey(value){
-          console.log('this is value:  ' + value);
+    console.log('this is value:  ' + value);
     var wordsInKey =  value.match(/\S+/gi).length;
-          console.log('this is words in key: ' + wordsInKey);
-          //var letters =  value.match(/[a-z]+/gi).length;
-          console.log('these are key letter count:  ' + letters ) ;
+    console.log('this is words in key: ' + wordsInKey);
+    //var letters =  value.match(/[a-z]+/gi).length;
+    console.log('these are key letter count:  ' + letters ) ;
     return wordsInKey;
-          console.log('this is to string: ' + blog.articles.toString());
+    console.log('this is to string: ' + blog.articles.toString());
   });
   var wordsPerObject = wordsPerKey.reduce(function sum(a, b){
     return a + b;
