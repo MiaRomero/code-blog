@@ -1,4 +1,4 @@
 # code-blog
 
 
-Assignment for Class 6 - AJAX and JSON
+Assignment for Class 12 - REST and API's

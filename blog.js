@@ -1,7 +1,6 @@
 
 var blog = {};
 blog.articles = [];
-blog.about = 'string';
 
 blog.determineData = function () {
 
@@ -40,7 +39,6 @@ blog.determineAdminMode = function () {
 //Converts each publishedOn date in article objects to milliseconds, adds that
 //value to milliDate property for each object, sorts article array by publishedOn
 //date, descending.
-
 blog.sortArticlesByDate = function () {
   for (var i = 0; i < this.articles.length; i++){
     var date = this.articles[i].publishedOn;
@@ -84,11 +82,6 @@ blog.populateDropDownFilter = function (filter, elementID){
   }
 };
 
-//Populates About tab.
-blog.populateAboutTab = function () {
-  $('#about p').text(this.about).hide();
-};
-
 //Creates article objects for each article in the data set. Populates dropdown
 //filters based on the selected filter categories from article object properties.
 //Truncates each article.
@@ -103,7 +96,7 @@ blog.createArticlesAndFilters = function (data) {
 
 //Populates articles and dropdown filters.
 blog.populateArticleDivs = function() {
-  $.get('templates/article.handlebars')
+  $.get('templates/article_hbs.html')
 
      .done(function (data) {
        blog.replaceArticleBody();
@@ -111,10 +104,11 @@ blog.populateArticleDivs = function() {
        blog.createArticlesAndFilters(data);
        blog.truncateArticles();
        blog.determineAdminMode();
+       $('.about').hide();
+       $('#repos').hide();
+       $('.articles').show();
      })
-
            //check for new data?
-
     .fail(function errorMessage() {
       $('.articles').html('<p>Sorry, articles cannot be loaded.  Please refresh your browser.</p>');
     });
@@ -125,7 +119,6 @@ blog.populateArticleDivs = function() {
 //truncated articles.
 blog.loadBlogPage = function () {
   blog.populateArticleDivs();
-  blog.populateAboutTab();
   // checkForNewArticles();
 };
 
@@ -135,7 +128,7 @@ blog.populateDBTable = function (){
   blog.articles.forEach(function(object){
     webDB.execute([
       {
-        'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, body) VALUES (?, ?, ?, ?, ?, ?);',
+        'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, markdown) VALUES (?, ?, ?, ?, ?, ?);',
         'data': [object.title, object.author, object.authorUrl, object.category, object.publishedOn, object.markdown],
       }
     ]);

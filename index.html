@@ -5,8 +5,8 @@
 
     <title>Maria's Blog</title>
 
-    <link rel='stylesheet' href='styles/normalize.css' type='text/css'/>
-    <link rel='stylesheet' href='styles/blogStyles.css' type='text/css'/>
+    <link rel='stylesheet' href='/styles/normalize.css' type='text/css'/>
+    <link rel='stylesheet' href='/styles/blogStyles.css' type='text/css'/>
     <meta name='viewport' content='width=device-width, initial-scale=1'/>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js'></script>
@@ -24,8 +24,8 @@
 
       <nav>
         <div class='tabLinks'>
-            <a href='#'></span>Home</a>
-            <a href='#'></span>About</a>
+            <a href='/'></span>Home</a>
+            <a href='/about'></span>About</a>
             <a href='https://twitter.com/'>Twitter</a>
             <a href='https://github.com/MiaRomero'>GitHub</a>
         </div>
@@ -52,19 +52,30 @@
       </div>
 
       <div class='articles'></div>
+
+      <div class='about'></div>
+        <ul id='repos'></ul>
+        <ul id='branches'></ul>
+
+
     </main>
 
     <footer>
       <p>footerFooterFooter</p>
     </footer>
 
-    <!--<script src='data/blogData.js'></script>-->
-    <script src='html5sql.js'></script>
-    <script src='webDB.js'></script>
+
+    <script src='/page.js'></script>
+    <script src='/html5sql.js'></script>
+    <script src='/webDB.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
-    <script src='article.js'></script>
-    <script src='blog.js'></script>
-    <script src='index.js'></script>
-    <script src='edit_articles.js'</script>
+    <script src='/githubToken.js'></script>
+    <script src='/article.js'></script>
+    <script src='/blog.js'></script>
+    <script src='/index.js'></script>
+    <script src='/aboutViewer.js'></script>
+    <script src='/articleController.js'></script>
+    <script src='/repoController.js'></script>
+    <script src='/router.js'></script>
   </body>
 </html>
