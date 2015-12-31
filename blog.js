@@ -1,11 +1,12 @@
 
 var blog = {};
-blog.articles = articles;
+blog.articles = rawData;
 blog.about = about;
 
 /**
-   * Converts each publishedOn date in article objects to milliseconds, sorts
-   * article array by publishedOn date, descending.
+   * Converts each publishedOn date in article objects to milliseconds, adds that
+   * value to milliDate property for each object, sorts article array by publishedOn
+   * date, descending.
    */
 blog.sortArticlesByDate = function () {
   for (var i = 0; i < this.articles.length; i++){
@@ -22,6 +23,7 @@ blog.sortArticlesByDate = function () {
    */
 blog.truncateArticles = function () {
   $('div p:not(:first-child)').hide();
+  $('.category').hide();
   $('.readMore').show();
   $('.readLess').hide();
 };
@@ -50,23 +52,26 @@ blog.createDropDownFilter = function (filter, elementID){
   }
 };
 
+/**
+   * Populates About tab.
+   */
 blog.populateAboutTab = function () {
   $('#about p').text(this.about).hide();
-
 };
 
 /**
    * Creates a completed article object from each object in article array,
-   * posts each to webpage.
+   * posts each to webpage.  Displays blog properly with tabs, drop downs, and
+   * truncated articles.
    */
 blog.loadBlogPage = function () {
   blog.sortArticlesByDate();
   for (var i = 0; i < blog.articles.length; i++){
     var fullArticle = new CompleteArticle(blog.articles[i]);
     fullArticle.toHTML();
-    blog.populateAboutTab();
     blog.createDropDownFilter(fullArticle.author, '#authorDropDown');
     blog.createDropDownFilter(fullArticle.category, '#categoryDropDown');
   }
+  blog.populateAboutTab();
   blog.truncateArticles();
 };
