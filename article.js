@@ -50,6 +50,9 @@ CompleteArticle.findByCategory = function(category, callback) {
     [{
       'sql': 'SELECT * FROM articles WHERE category = ?',
       'data': [category]
-    }], callback
-  );
+    }],
+    function (){
+
+    }),
+    callback;
 };

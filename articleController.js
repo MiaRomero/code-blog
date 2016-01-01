@@ -13,6 +13,7 @@ articleController.category = function (ctx, next) {
 };
 
 articleController.show = function(ctx, next) {
+  blog.loadBlogPage();
   console.log('we\'re now in articleController.show');
   console.log(ctx.articles);
 };
