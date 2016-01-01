@@ -135,7 +135,7 @@ blog.populateDBTable = function (){
   blog.articles.forEach(function(object){
     webDB.execute([
       {
-        'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, body) VALUES (?, ?, ?, ?, ?, ?);',
+        'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, markdown) VALUES (?, ?, ?, ?, ?, ?);',
         'data': [object.title, object.author, object.authorUrl, object.category, object.publishedOn, object.markdown],
       }
     ]);

@@ -49,8 +49,11 @@ $(function () {
 
   $('main').on('click', '.editMode', function(event){
     event.preventDefault();
-    //get article id, add to href
-    location.href='edit_articles.html?id=12'; //+ id;
+    var articleTitle = ($(event.target.previousElementSibling)).text();
+    webDB.execute(
+      'SELECT id FROM articles WHERE title= "' + articleTitle + '";',
+      function(results){
+        location.href='edit_articles.html?id=' + results[0].id;
+      });
   });
-
 });

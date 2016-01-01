@@ -33,7 +33,6 @@ CompleteArticle.prototype.toHTML = function (handlebarsReturn) {
 };
 
 setCurrentEtag = function () {
-
   $.ajax({
     type: 'HEAD',
     url: 'http://localhost/GitHub/code-blog/',
