@@ -68,6 +68,16 @@ footer {
   color: #B44EFD;
   text-decoration: none;
 }
+.editMode {
+  color: red;
+  text-decoration: none !important;
+  font-size: 20px;
+  font-weight: bold;
+}
+#updateArticle, #deleteArticle{
+  margin: 10px;
+  background-color: #9C72E0;
+}
 
 @media screen and (max-width: 500px) {
   /*main{

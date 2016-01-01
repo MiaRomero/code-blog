@@ -1,7 +1,7 @@
-/**
-   * Creates new completed artile objects
-   * @param dataObject - an ojbect from the blog.articles array
-   */
+
+//Creates new completed artile objects
+//@param dataObject - an ojbect from the blog.articles array
+
 function CompleteArticle(dataObject) {
   this.title = dataObject.title;
   this.category = dataObject.category;
@@ -12,20 +12,18 @@ function CompleteArticle(dataObject) {
   this.milliDate = dataObject.milliDate;
 }
 
-/**
-   * Calculates the number of days that have passed since "date"
-   * @param date - object.milliDate (in milliseconds) to be calculated
-   */
+//Calculates the number of days that have passed since "date"
+//@param date - object.milliDate (in milliseconds) to be calculated
+
 CompleteArticle.prototype.calculateDaysAgo = function (date) {
   var milSecondsPerDay = 1000 * 3600 * 24;
   var today = new Date();
   return Math.floor((today - date) / milSecondsPerDay);
 };
 
-/**
-   * Takes the new object, adds the daysAgo property, uses the handlebars
-   * template to insert it into the DOM.
-   */
+//Takes the new object, adds the daysAgo property, uses the handlebars
+//template to insert it into the DOM.
+
 CompleteArticle.prototype.toHTML = function (handlebarsReturn) {
   this.daysAgo = this.calculateDaysAgo(this.milliDate);
   var articleTemplateScript = handlebarsReturn;
@@ -35,7 +33,6 @@ CompleteArticle.prototype.toHTML = function (handlebarsReturn) {
 };
 
 setCurrentEtag = function () {
-
   $.ajax({
     type: 'HEAD',
     url: 'http://localhost/GitHub/code-blog/',

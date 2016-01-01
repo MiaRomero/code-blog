@@ -1,10 +1,11 @@
 
 $(function () {
-  blog.loadBlogPage();
+  webDB.init();
+  blog.determineData();
 
   $('main').on('click', '.readMore',function(event){
     event.preventDefault();
-    $(this).parent().find('div p').show();
+    $(this).parent().find('.articleContent').children().show();
     $(this).hide();
     $(this).parent().find('.readLess').show();
   });
@@ -46,4 +47,13 @@ $(function () {
     $('#authorDropDown').prop('selectedIndex',0);;
   });
 
+  $('main').on('click', '.editMode', function(event){
+    event.preventDefault();
+    var articleTitle = ($(event.target.previousElementSibling)).text();
+    webDB.execute(
+      'SELECT id FROM articles WHERE title= "' + articleTitle + '";',
+      function(results){
+        location.href='edit_articles.html?id=' + results[0].id;
+      });
+  });
 });
