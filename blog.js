@@ -96,7 +96,7 @@ blog.createArticlesAndFilters = function (data) {
 
 //Populates articles and dropdown filters.
 blog.populateArticleDivs = function() {
-  $.get('templates/article_hbs.html')
+  $.get('/templates/article_hbs.html')
 
      .done(function (data) {
        blog.replaceArticleBody();
