@@ -1,13 +1,44 @@
 
 var blog = {};
-blog.articles = rawData;
-blog.about = about;
+blog.articles = [];
 
-/**
-   * Converts each publishedOn date in article objects to milliseconds, adds that
-   * value to milliDate property for each object, sorts article array by publishedOn
-   * date, descending.
-   */
+blog.determineData = function () {
+
+  $.getJSON('data/hackerIpsum.json')
+    .done(function (result) {
+      blog.articles = result;
+      blog.populateDBTable();
+      blog.loadBlogPage();
+    })
+
+  .fail( function () {
+    console.log('get JSON FAIL');
+  });
+};
+
+//callback function: renders markdown characters from article body
+blog.undoMarkdown = function (object, index, array) {
+  var newBody = marked(object.markdown);
+  object.body = newBody;
+};
+
+//replaces article body with "un"markdowned version
+blog.replaceArticleBody = function () {
+  (blog.articles).forEach(blog.undoMarkdown);
+
+};
+
+//determines if blog should be viewed in admin mode
+blog.determineAdminMode = function () {
+  var testAdmin = window.location.search.substring(1);
+  if (testAdmin === 'admin=true'){
+    $('.articleTitle').after('<a class="editMode" href="edit_articles.html">EDIT</a>');
+  }
+};
+
+//Converts each publishedOn date in article objects to milliseconds, adds that
+//value to milliDate property for each object, sorts article array by publishedOn
+//date, descending.
 blog.sortArticlesByDate = function () {
   for (var i = 0; i < this.articles.length; i++){
     var date = this.articles[i].publishedOn;
@@ -18,25 +49,24 @@ blog.sortArticlesByDate = function () {
   });
 };
 
-/**
-   * Shows only the first paragraph of each article
-   */
+//Shows only the first paragraph of each article
 blog.truncateArticles = function () {
-  $('div p:not(:first-child)').hide();
+  $('article .articleContent p').hide();
+  $('article .articleContent p:first-of-type').show();
+  $('article .articleContent h2').hide();
+  $('article .articleContent h2:first-of-type').show();
   $('.category').hide();
   $('.readMore').show();
   $('.readLess').hide();
 };
 
-/**
-   * Populates the drop down selectors. If the filter is not a repeat, clones
-   * the option element, formats the clone with the apporpriate info,
-   * and inserts it into the DOM.
-   * @param filter - the object property you want to filter by (object.property)
-   * @param elementID - the ID of the <select> element you want the filter to
-   *                    populate (must include be a string and include #)
-   */
-blog.createDropDownFilter = function (filter, elementID){
+//Populates the drop down selectors. If the filter is not a repeat, clones
+//the option element, formats the clone with the apporpriate info,
+//and inserts it into the DOM.
+//@param filter - the object property you want to filter by (object.property)
+//@param elementID - the ID of the <select> element you want the filter to
+//                   populate (must include be a string and include #)
+blog.populateDropDownFilter = function (filter, elementID){
   var $options = $(elementID).children();
   var repeat = false;
 
@@ -52,26 +82,55 @@ blog.createDropDownFilter = function (filter, elementID){
   }
 };
 
-/**
-   * Populates About tab.
-   */
-blog.populateAboutTab = function () {
-  $('#about p').text(this.about).hide();
-};
-
-/**
-   * Creates a completed article object from each object in article array,
-   * posts each to webpage.  Displays blog properly with tabs, drop downs, and
-   * truncated articles.
-   */
-blog.loadBlogPage = function () {
-  blog.sortArticlesByDate();
+//Creates article objects for each article in the data set. Populates dropdown
+//filters based on the selected filter categories from article object properties.
+//Truncates each article.
+blog.createArticlesAndFilters = function (data) {
   for (var i = 0; i < blog.articles.length; i++){
     var fullArticle = new CompleteArticle(blog.articles[i]);
-    fullArticle.toHTML();
-    blog.createDropDownFilter(fullArticle.author, '#authorDropDown');
-    blog.createDropDownFilter(fullArticle.category, '#categoryDropDown');
-  }
-  blog.populateAboutTab();
-  blog.truncateArticles();
+    fullArticle.toHTML(data);
+    blog.populateDropDownFilter(fullArticle.author, '#authorDropDown');
+    blog.populateDropDownFilter(fullArticle.category, '#categoryDropDown');
+  };
+};
+
+//Populates articles and dropdown filters.
+blog.populateArticleDivs = function() {
+  $.get('/templates/article_hbs.html')
+
+     .done(function (data) {
+       blog.replaceArticleBody();
+       blog.sortArticlesByDate();
+       blog.createArticlesAndFilters(data);
+       blog.truncateArticles();
+       blog.determineAdminMode();
+       $('.about').hide();
+       $('#repos').hide();
+       $('.articles').show();
+     })
+           //check for new data?
+    .fail(function errorMessage() {
+      $('.articles').html('<p>Sorry, articles cannot be loaded.  Please refresh your browser.</p>');
+    });
+};
+
+//Creates a completed article object from each object in article array,
+//posts each to webpage.  Displays blog properly with tabs, drop downs, and
+//truncated articles.
+blog.loadBlogPage = function () {
+  blog.populateArticleDivs();
+  // checkForNewArticles();
+};
+
+//make this a callback function with only the webDB call.  Do the forEach in another function.
+blog.populateDBTable = function (){
+
+  blog.articles.forEach(function(object){
+    webDB.execute([
+      {
+        'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, markdown) VALUES (?, ?, ?, ?, ?, ?);',
+        'data': [object.title, object.author, object.authorUrl, object.category, object.publishedOn, object.markdown],
+      }
+    ]);
+  });
 };

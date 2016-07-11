@@ -1,10 +1,9 @@
 
 $(function () {
-  blog.loadBlogPage();
 
   $('main').on('click', '.readMore',function(event){
     event.preventDefault();
-    $(this).parent().find('div p').show();
+    $(this).parent().find('.articleContent').children().show();
     $(this).hide();
     $(this).parent().find('.readLess').show();
   });
@@ -12,18 +11,6 @@ $(function () {
   $('main').on('click', '.readLess',function(event){
     event.preventDefault();
     blog.truncateArticles();
-  });
-
-  $('header').on('click', '.tabLinks :nth-child(2)', function(event) {
-    event.preventDefault();
-    $('article').hide();
-    $('#about p').show();
-  });
-
-  $('header').on('click', '.tabLinks :first-child', function(event) {
-    event.preventDefault();
-    $('article').show();
-    $('#about p').hide();
   });
 
   $('#authorDropDown').change(function (){
@@ -44,6 +31,12 @@ $(function () {
       $('article').show();
     };
     $('#authorDropDown').prop('selectedIndex',0);;
+  });
+
+  $('main').on('click', '.editMode', function(event){
+    event.preventDefault();
+    //get article id, add to href
+    location.href='edit_articles.html?id=12'; //+ id;
   });
 
 });

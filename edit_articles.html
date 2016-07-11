@@ -3,7 +3,7 @@
 
   <head>
 
-    <title>Maria's Blog New Article Form</title>
+    <title>Maria's Blog Edit Article Form</title>
 
     <link rel='stylesheet' href='styles/normalize.css' type='text/css'/>
     <link rel="stylesheet" type="text/css" href="styles/default.css">
@@ -34,18 +34,18 @@
 
       <div id='blogTitle'>
         <h1>Maria's Blog</h1>
-        <h3>New Article Entry Form</h3>
+        <h3>Article Edit Form</h3>
       </div>
 
     </header>
 
     <main>
       <div>
-        <h2>New Article</h2>
+        <h1>Edit Article</h1>
         <form action="#" id="entryForm">
 
           <label>
-            <input type="text" id="articleTitle" placeholder="Title">
+            <input type="text" id="articleTitle" placeholder="Title" text=''></input>
           </label>
 
           <label>
@@ -64,7 +64,7 @@
 
         </form>
       </div>
-
+        <h1>Preview article here</h1>
       <div id="preview">
         <!-- Preview article here-->
       </div>
@@ -76,9 +76,13 @@
         </p>Copy the above JSON, and paste into blogData.js</p>
       </div>
   </main>
-
+    <script src='html5sql.js'></script>
+    <script src='webDB.js'></script>
+    <!--<script src='index.js'></script>-->
+    <script src='blog.js'></script>
+    <script src='article.js'></script>
     <script src="highlight.pack.js" type="text/javascript"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src='new.js' type="text/javascript"></script>
+    <script src='edit_articles.js' type="text/javascript"></script>
   </body>
 </html>

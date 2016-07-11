@@ -5,24 +5,13 @@
 
     <title>Maria's Blog</title>
 
-    <link rel='stylesheet' href='styles/normalize.css' type='text/css'/>
-    <link rel='stylesheet' href='https://i.icomoon.io/public/temp/7b982fd8a7/UntitledProject/style.css'/>
-    <link rel='stylesheet' href='styles/blogStyles.css' type='text/css'/>
+    <link rel='stylesheet' href='/styles/normalize.css' type='text/css'/>
+    <link rel='stylesheet' href='/styles/blogStyles.css' type='text/css'/>
     <meta name='viewport' content='width=device-width, initial-scale=1'/>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js'></script>
 
-    <script id='article-template' type='text/x-handlebars-template'>
-      <article>
-        <h2 class='articleTitle'>{{title}}</h2>
-        <div class='author'><p>By <a href='"' + {{authorURl}} + '"'>{{author}}</a></p></div>
-        <div class='publishDate'>Published {{daysAgo}} days ago on {{publishedOn}}</div>
-        <div class='category'>{{category}}</div>
-        <div class='articleContent'>{{{body}}}</div>
-        <a class='readMore' href=''>Read More . . .</a>
-        <a class='readLess' href=''>Read Less</a>
-      </article>
-    </script>
+
   </head>
 
   <body>
@@ -30,12 +19,14 @@
 
       <div id='blogTitle'>
         <h1>Maria's Blog</h1>
+        <h3>'Perfer et obdura, dolor hic tibi proderit olim' - Ovid</h3>
+
       </div>
 
       <nav>
         <div class='tabLinks'>
-            <a href='#'></span>Home</a>
-            <a href='#'></span>About</a>
+            <a href='/'></span>Home</a>
+            <a href='/about'></span>About</a>
             <a href='https://twitter.com/'>Twitter</a>
             <a href='https://github.com/MiaRomero'>GitHub</a>
         </div>
@@ -62,15 +53,32 @@
       </div>
 
       <div class='articles'></div>
+
+      <div class='about'></div>
+        <ul id='repos'></ul>
+        <ul id='branches'></ul>
+
+
     </main>
 
     <footer>
       <p>footerFooterFooter</p>
     </footer>
 
-    <script src='blogData.js'></script>
-    <script src='article.js'></script>
-    <script src='blog.js'></script>
-    <script src='index.js'></script>
+
+    <script src='/page.js'></script>
+    <script src='/html5sql.js'></script>
+    <script src='/webDB.js'></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+
+    <script src='/article.js'></script>
+    
+    <script src='/blog.js'></script>
+    <script src='/index.js'></script>
+    <script src='/aboutViewer.js'></script>
+    <script src='/articleController.js'></script>
+    <script src='/repoController.js'></script>
+    <script src='/router.js'></script>
   </body>
 </html>

@@ -68,6 +68,12 @@ footer {
   color: #B44EFD;
   text-decoration: none;
 }
+.editMode {
+  color: red;
+  text-decoration: none !important;
+  font-size: 20px;
+  font-weight: bold;
+}
 
 @media screen and (max-width: 500px) {
   /*main{

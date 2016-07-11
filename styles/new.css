@@ -11,8 +11,14 @@ main {
 input {
   border-color: #A89FD9;
 }
+label{
+  width: auto;
+}
 textarea {
   border-color: #A89FD9;
+}
+h1 {
+  text-decoration: underline;
 }
 #entryForm label {
   display: block;

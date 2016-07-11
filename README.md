@@ -1,4 +1,6 @@
 # code-blog
 
 
-Assignment for Class 2 - jQuery and Events
+Assignment for Class 13 - Production Deployment
+
+url for my blog: https://maria-blog.herokuapp.com/
